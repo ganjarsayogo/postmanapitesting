@@ -1,0 +1,419 @@
+{
+	"info": {
+		"_postman_id": "a39a4120-453b-42e2-a65a-22d61dae3e72",
+		"name": "Instant Web Tools_Ganjar",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Airline Data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 3500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3500);\r",
+							"});\r",
+							"\r",
+							"const dataJSON = pm.response.json();\r",
+							"const IDJSON = dataJSON.id;\r",
+							"pm.environment.set(\"airline_id\", IDJSON);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"{{id}}\",\r\n    \"name\": \"{{name}}\",\r\n    \"country\": \"{{country}}\",\r\n    \"logo\": \"{{logo}}\",\r\n    \"slogan\": \"{{slogan}}\",\r\n    \"head_quaters\": \"{{head_quaters}}\",\r\n    \"website\": \"{{website}}\",\r\n    \"established\": \"{{established}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/v1/airlines",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"v1",
+						"airlines"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Read All Airlines Details",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 3500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3500);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/v1/airlines",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"v1",
+						"airlines"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Read Airline by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 3500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3500);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/v1/airlines/:id",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"v1",
+						"airlines",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "{{airline_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Passenger",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 3500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3500);\r",
+							"});\r",
+							"\r",
+							"const dataJSON = pm.response.json();\r",
+							"const IDJSON = dataJSON._id;\r",
+							"pm.environment.set(\"passenger_id\", IDJSON);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"{{name}}\",\r\n    \"trips\": \"{{trips}}\",\r\n    \"airline\": \"{{airline}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/v1/passenger",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"v1",
+						"passenger"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Read Passenger by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 3500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3500);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/v1/passenger/:id",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"v1",
+						"passenger",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "{{passenger_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Read All Passengers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 3500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3500);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/v1/passenger?page=0&size=10",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"v1",
+						"passenger"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Passenger Name by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 3500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3500);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"name\": \"{{name_patch}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/v1/passenger/:id",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"v1",
+						"passenger",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "{{passenger_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update All Detail of Passenger by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 3500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3500);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"{{name_put}}\",\r\n    \"trips\": \"{{trips_put}}\",\r\n    \"airline\": \"{{airline_put}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/v1/passenger/:id",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"v1",
+						"passenger",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "{{passenger_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Passenger by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 3500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3500);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/v1/passenger/:id",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"v1",
+						"passenger",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "{{passenger_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "random_id",
+			"value": ""
+		}
+	]
+}
